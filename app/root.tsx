@@ -10,7 +10,7 @@ import {
   Outlet,
   useLoaderData,
   useNavigation,
-  useSubmit,
+  useParams,
 } from "@remix-run/react";
 import { redirect, json, LoaderFunctionArgs } from "@remix-run/node";
 import { createEmptyContact, getContacts } from "./data";
@@ -36,7 +36,7 @@ export const action = async () => {
 export default function App() {
   const { contacts, q } = useLoaderData<typeof loader>();
   const navigation = useNavigation();
-  const submit = useSubmit();
+  const params = useParams();
   const searching =
     navigation.location &&
     new URLSearchParams(navigation.location.search).has("q");
@@ -60,16 +60,7 @@ export default function App() {
           <h1>Remix Contacts</h1>
 
           <div>
-            <Form
-              id="search-form"
-              role="search"
-              onChange={(event) => {
-                const isFirstSearch = q === null;
-                submit(event.currentTarget, {
-                  replace: !isFirstSearch,
-                });
-              }}
-            >
+            <Form id="search-form" role="search">
               <input
                 id="q"
                 aria-label="Search contacts"
@@ -97,6 +88,10 @@ export default function App() {
                         isActive ? "active" : isPending ? "pending" : ""
                       }
                       to={`contacts/${contact.id}`}
+                      onClick={(event) => {
+                        if (contact.id === params.contactId)
+                          event.preventDefault();
+                      }}
                     >
                       {contact.first || contact.last ? (
                         <>
