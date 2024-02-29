@@ -3,7 +3,7 @@ import {
   json,
   type LoaderFunctionArgs,
   type ActionFunctionArgs,
-} from "@remix-run/node";
+} from "@remix-run/cloudflare";
 import { getContact, updateContact } from "../data";
 import type { FunctionComponent } from "react";
 import type { ContactRecord } from "../data";

@@ -1,5 +1,5 @@
-import type { ActionFunctionArgs } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
+import type { ActionFunctionArgs } from "@remix-run/cloudflare";
+import { redirect } from "@remix-run/cloudflare";
 import { deleteContact } from "../data";
 import invariant from "tiny-invariant";
 

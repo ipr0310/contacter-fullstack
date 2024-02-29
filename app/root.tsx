@@ -12,9 +12,9 @@ import {
   useNavigation,
   useParams,
 } from "@remix-run/react";
-import { redirect, json, LoaderFunctionArgs } from "@remix-run/node";
+import { redirect, json, LoaderFunctionArgs } from "@remix-run/cloudflare";
 import { createEmptyContact, getContacts } from "./data";
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction } from "@remix-run/cloudflare";
 import appStylesHref from "./app.css";
 
 export const links: LinksFunction = () => [
