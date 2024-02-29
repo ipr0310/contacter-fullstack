@@ -13,7 +13,12 @@ import {
   useParams,
 } from "@remix-run/react";
 import { cssBundleHref } from "@remix-run/css-bundle";
-import { redirect, json, LoaderFunctionArgs } from "@remix-run/cloudflare";
+import {
+  redirect,
+  json,
+  LoaderFunctionArgs,
+  MetaFunction,
+} from "@remix-run/cloudflare";
 import { createEmptyContact, getContacts } from "./data";
 import type { LinksFunction } from "@remix-run/cloudflare";
 import "./app.css";
@@ -32,6 +37,13 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export const action = async () => {
   const contact = await createEmptyContact();
   return redirect(`/contacts/${contact.id}/edit`);
+};
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Contacter App" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
 };
 
 export default function App() {
