@@ -16,10 +16,9 @@ import { cssBundleHref } from "@remix-run/css-bundle";
 import { redirect, json, LoaderFunctionArgs } from "@remix-run/cloudflare";
 import { createEmptyContact, getContacts } from "./data";
 import type { LinksFunction } from "@remix-run/cloudflare";
-import appStylesHref from "./app.css";
 
 export const links: LinksFunction = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: appStylesHref }] : []),
+  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
